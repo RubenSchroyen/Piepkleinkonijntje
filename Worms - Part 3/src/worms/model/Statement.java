@@ -276,7 +276,7 @@ public abstract class Statement
 		return (this.getParent() != null);
 	}
 	
-	private boolean isTerminated() 
+	public boolean isTerminated() 
 	{
 		return terminated;
 	}
