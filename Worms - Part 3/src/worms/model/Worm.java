@@ -6,8 +6,7 @@ package worms.model;
  **********************************************************************************************************************************
  *																																  *
  *		HIGH PRIORITY																											  *
- *		-------------																											  *	
- *			EXPRESSION CLASS																						 			  *
+ *		-------------																								 			  *
  *			ALL EXPRESSION AND STATEMENTS 																						  *
  *			PROGRAM CLASS																									      *
  *			DOCUMENTATION																									  	  *
