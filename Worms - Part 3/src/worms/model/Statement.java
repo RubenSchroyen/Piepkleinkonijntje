@@ -2,14 +2,14 @@ package worms.model;
 
 import java.util.ArrayList;
 
-public class Statement 
+public abstract class Statement 
 {
 	private int line;
 	private int column;
-	private ArrayList<Expression> expressions;
-	private ArrayList<Statement> statements;
+	private ArrayList<Expression> expressions = new ArrayList<Expression>();;
+	private ArrayList<Statement> statements = new ArrayList<Statement>();;
 	private Statement parent;
-	private boolean terminated;
+	private boolean terminated = false;
 	Program program;
 	
 	public Statement(int line, int column) 
@@ -150,106 +150,134 @@ public class Statement
 	
 	public void terminate()
 	{
-		//TODO
+		removeAllStatements();
+		removeAllExpressions();
+		terminated = true;
 	}
 	
 	public boolean hasExpression(Expression expression)
 	{
-		return false;
-		//TODO
+		return expressions.contains(expression);
 	}
 	
 	public boolean isValidExpression(Expression expression)
 	{
-		return false;
-		//TODO
+		return (expression != null && !hasExpression(expression));
 	}
 	
-	public void removeStatement(Statement statement)
+	public void removeStatement(Statement statement) throws ModelException
 	{
-		//TODO
+		if (!hasStatement(statement))
+			throw new ModelException("Statement is not called yet");
+		statement.removeParent();
+		statements.remove(statement);
 	}
 	
 	public void removeAllStatements()
 	{
-		//TODO
+		for (Statement statement : statements) 
+		{
+			statement.removeParent();
+			removeStatement(statement);
+		}
 	}
 	
-	public void removeParent(Statement statement)
+	public void removeParent()
 	{
-		//TODO
+		setParent(null);
 	}
 	
-	public void removeExpression(Expression expression)
+	public void removeExpression(Expression expression) throws ModelException
 	{
-		//TODO
+		if (!hasExpression(expression))
+			throw new ModelException("Expression is not called yet");
+		expression.removeStatement();
+		expressions.remove(expression);
 	}
 	
 	public void removeAllExpressions()
 	{
-		//TODO
+		for (Expression expression : expressions) 
+		{
+			expression.removeStatement();
+			removeExpression(expression);
+		}
 	}
 	
 	public void removeProgram(Program program)
 	{
-		//TODO
+		setProgram(null);
 	}
 
 	public boolean isValidProgram(Program program)
 	{
-		return false;
-		//TODO
+		return (program != null && !program.isTerminated());
 	}
 	
 	public boolean hasProgram(Program program)
 	{
-		return false;
-		//TODO
+		return (program != null);
 	}
 
 	public Program getRootProgram() 
 	{
-		//TODO
-		return program;
+		Statement statement = this;
+		
+		while ( statement.hasParent() ) 
+		{
+			statement = statement.getParent();
+		}
+		
+		return statement.getProgram();
 	}
 	
 	public ArrayList<Statement> getAllStatements()
 	{
-		//TODO
+		statements.add(this);
+		for (Statement statement : getStatements() ) 
+		{
+			if (statement != null)
+				statements.addAll(statement.getAllStatements());
+		}
 		return statements;
 	}
 	
 	public boolean isWellFormed(Program program)
 	{
-		return false;
-		//TODO
+		for ( Statement statement : getStatements() ) 
+		{
+			if (!statement.isWellFormed(program))
+				return false;
+		}
+		return true;
 	}
 	
-	public void execute()
-	{
-		//TODO
-	}
+	public abstract void execute();
 	
 	public void beforeExecute()
 	{
-		//TODO
+		Program program = getRootProgram();
+		if (!program.skip())
+			program.stop();
+		if (program.amountOfStatements() >= program.maxAmountOfStatements())
+			program.stop();
+		program.setCurrentLine(getLine());
+		program.setCurrentColumn(getColumn());
+		program.IncreaseAmountOfStatements();
 	}
 	
 	private boolean isValidParent(Statement statement) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return (statement != null && !statement.isTerminated());
 	}
 
 	private boolean hasParent() 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return (this.getParent() != null);
 	}
 	
 	private boolean isTerminated() 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return terminated;
 	}
 }
