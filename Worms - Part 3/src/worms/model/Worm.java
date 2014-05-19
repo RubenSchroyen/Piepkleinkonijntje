@@ -7,7 +7,10 @@ package worms.model;
  *																																  *
  *		HIGH PRIORITY																											  *
  *		-------------																											  *	
- *																														  		  *
+ *			STATEMENT AND EXPRESSION CLASS																						  *
+ *			ALL EXPRESSION AND STATEMENTS 																						  *
+ *			PROGRAM CLASS																									      *
+ *			DOCUMENTATION																									  	  *
  *																																  *
  *		LOW PRIORITY																											  *
  *		------------																										      *
