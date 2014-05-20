@@ -259,7 +259,7 @@ public abstract class Statement
 		Program program = getRootProgram();
 		if (!program.skip())
 			program.stop();
-		if (program.amountOfStatements() >= program.maxAmountOfStatements())
+		if (program.getAmountOfStatements() >= program.maxAmountOfStatements())
 			program.stop();
 		program.setCurrentLine(getLine());
 		program.setCurrentColumn(getColumn());

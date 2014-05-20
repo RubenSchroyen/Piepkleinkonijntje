@@ -1,4 +1,4 @@
-package worms.model.Programs;
+package worms.model;
 
 import java.util.List;
 
