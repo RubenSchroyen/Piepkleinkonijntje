@@ -12,6 +12,10 @@ public class Negation extends Expression {
 
 	@Override
 	public Type<?> evaluate() {
+		Object value = getExpressions().get(0).evaluate().getValue();
+		if (value instanceof Boolean)
+			return new Type<Boolean> (!(boolean) value);
+		getRootProgram().typeErrorOccurred();
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -167,7 +167,7 @@ public class Food
 	 * @return 0.20
 	 */
 	@Basic @Raw	
-	public double getRadius() 
+	public static double getRadius() 
 	{
 		return 0.20;
 	}

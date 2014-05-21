@@ -12,6 +12,11 @@ public class isEqualTo extends Expression{
 
 	@Override
 	public Type<?> evaluate() {
+		Object value = getExpressions().get(0).evaluate().getValue();
+		Object otherValue = getExpressions().get(1).evaluate().getValue();
+		if (value instanceof Number && otherValue instanceof Number)
+			return new Type<Boolean> ((double) value == (double) otherValue);
+		getRootProgram().typeErrorOccurred();
 		// TODO Auto-generated method stub
 		return null;
 	}

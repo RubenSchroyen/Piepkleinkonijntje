@@ -1,6 +1,7 @@
 package worms.model.Expressions.Object;
 
 import worms.model.Expression;
+import worms.model.Food;
 import worms.model.Type;
 
 public class isFood extends Expression{
@@ -13,7 +14,7 @@ public class isFood extends Expression{
 	@Override
 	public Type<?> evaluate() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Type<Boolean>(getExpressions().get(0).evaluate().getValue() instanceof Food);
 	}
 
 }
