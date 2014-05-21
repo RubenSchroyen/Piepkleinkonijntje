@@ -444,7 +444,8 @@ public class Facade implements IFacade
 	public ParseOutcome<?> parseProgram(String programText,
 			IActionHandler handler) {
 		// TODO Auto-generated method stub
-		return null;
+		Program program = new Program();
+		return program.parseProgram(programText, handler);
 	}
 
 

@@ -167,7 +167,7 @@ public abstract class Expression
 
 	private static boolean isValidParent(Expression expression) 
 	{
-		return (expression != null && expression.isTerminated());
+		return (expression != null && !expression.isTerminated());
 	}
 
 	protected boolean hasParent() 
