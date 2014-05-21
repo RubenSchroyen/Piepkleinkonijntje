@@ -1,8 +1,7 @@
 package worms.model.Statements;
 
-import worms.model.Statement;
 
-public class Skip extends Statement {
+public class Skip extends Action {
 
 	public Skip(int line, int column) {
 		super(line, column);
@@ -13,6 +12,13 @@ public class Skip extends Statement {
 	public void execute() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected void doAction() {
+		// TODO Auto-generated method stub
+		//NOTHING
+		System.out.println("Skipping");
 	}
 
 }
