@@ -6,10 +6,9 @@ package worms.model;
  **********************************************************************************************************************************
  *																																  *
  *		HIGH PRIORITY																											  *
- *		-------------																								 			  *
- *			ALL EXPRESSION AND STATEMENTS 																						  *
- *			PROGRAM CLASS																									      *
+ *		-------------																											  *																								      *
  *			DOCUMENTATION																									  	  *
+ *			FIGURE OUT WHY WORMS DON'T FOLLOW A PROGRAM																			  *
  *																																  *
  *		LOW PRIORITY																											  *
  *		------------																										      *
@@ -247,8 +246,8 @@ public class Worm
 	 * @return
 	 * 		program
 	 */
-	@Basic @Raw
-	private Program getProgram()
+	@Basic @Raw 
+	public Program getProgram()
 	{
 		return program;
 	}

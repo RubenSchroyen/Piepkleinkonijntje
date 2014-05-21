@@ -149,6 +149,8 @@ public class World
 	public Worm currentWorm()
 	{
 		Worm worm = worms.get(this.getIndex());
+		if (worm.hasProgram())
+			worm.getProgram().runProgram();
 		if (worm.getCurrentAP() == 0 && worms.size() > 1)
 		{
 			worm.setHP(worm.getHP() + 10);
@@ -405,6 +407,10 @@ public class World
 	 * 			| new.getPosX() == findAdjacentX(worm, randomPositionX)
 	 * 			| new.getPosY() == findAdjacentY(worm, randomPositionY)
 	 * 
+	 * @Post
+	 * 		If the worm has a program, we rename him
+	 * 			| new.getName() == Computer Controlled Worm
+	 * 
 	 * @post
 	 * 		The worm gets added to the currentTeam
 	 * 			| new.getCurrentTeam().size() == getCurrentTeam().size() + 1
@@ -418,6 +424,8 @@ public class World
 
 
 		Worm worm = new Worm(this, randomPositionX, randomPositionY, randomRadius, randomAngle, "Press N to rename", program);
+		if (worm.hasProgram())
+			worm.setName("Computer Controlled Worm");
 		worm.setPosX(this.findAdjacentX(worm, randomPositionX));
 		worm.setPosY(this.findAdjacentY(worm, randomPositionY));
 
@@ -1121,9 +1129,9 @@ public class World
 	@Basic @Model
 	private void setPassableMap(boolean[][] map) throws IllegalArgumentException
 	{
-		if (map.length == 0)
+		if (map.length == 0.0)
 			throw new IllegalArgumentException("Empty map!");
-		else if (map[0].length == 0)
+		else if (map[0].length == 0.0)
 			throw new IllegalArgumentException("Empty map!");
 		this.passableMap = map;
 	}
@@ -1147,9 +1155,9 @@ public class World
 	 */
 	public boolean isValidDimensions(double width, double height) throws IllegalArgumentException
 	{
-		if (width < 0 || width > Double.MAX_VALUE )
+		if (width < 0.0 || width > Double.MAX_VALUE )
 			throw new IllegalArgumentException("Not a valid dimension for World");
-		if (height < 0 || height > Double.MAX_VALUE)
+		if (height < 0.0 || height > Double.MAX_VALUE)
 			throw new IllegalArgumentException("Not a valid dimension for World");
 		return true;
 	}
