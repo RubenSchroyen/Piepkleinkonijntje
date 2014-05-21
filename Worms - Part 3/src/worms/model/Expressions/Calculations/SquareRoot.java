@@ -13,7 +13,11 @@ public class SquareRoot extends Expression{
 	@Override
 	public Type<?> evaluate() {
 		// TODO Auto-generated method stub
-		return null;
+				Object value = getExpressions().get(0).evaluate().getValue();
+				if (value instanceof Number)
+					return new Type<Double> (Math.sqrt((double) value));
+				getRootProgram().typeErrorOccurred();
+				return null;
 	}
 
 }

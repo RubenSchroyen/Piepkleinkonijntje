@@ -13,6 +13,10 @@ public class Cosine extends Expression {
 	@Override
 	public Type<?> evaluate() {
 		// TODO Auto-generated method stub
+		Object value = getExpressions().get(0).evaluate().getValue();
+		if (value instanceof Number)
+			return new Type<Double> (Math.cos((double) value));
+		getRootProgram().typeErrorOccurred();
 		return null;
 	}
 

@@ -2,6 +2,7 @@ package worms.model.Expressions.Calculations;
 
 import worms.model.Expression;
 import worms.model.Type;
+import worms.model.Worm;
 
 public class Self extends Expression{
 
@@ -13,7 +14,7 @@ public class Self extends Expression{
 	@Override
 	public Type<?> evaluate() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Type<Worm>(getRootProgram().getWorm());
 	}
 
 }

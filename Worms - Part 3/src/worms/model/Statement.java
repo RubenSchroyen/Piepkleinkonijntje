@@ -257,13 +257,13 @@ public abstract class Statement
 	public void beforeExecute()
 	{
 		Program program = getRootProgram();
-		if (!program.skip())
-			program.stop();
-		if (program.getAmountOfStatements() >= program.maxAmountOfStatements())
-			program.stop();
+		if (!program.continueExecution())
+			program.stopProgram();;
+		if (program.getAmountOfStatements() >= program.getAmountOfStatements())
+			program.stopProgram();
 		program.setCurrentLine(getLine());
 		program.setCurrentColumn(getColumn());
-		program.IncreaseAmountOfStatements();
+		program.incAmountOfStatements();
 	}
 	
 	private boolean isValidParent(Statement statement) 

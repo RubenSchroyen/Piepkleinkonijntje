@@ -13,7 +13,7 @@ public class Null extends Expression{
 	@Override
 	public Type<?> evaluate() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Type<Object>(null);
 	}
 
 }

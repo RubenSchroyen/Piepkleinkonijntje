@@ -12,6 +12,11 @@ public class Conjunction extends Expression {
 
 	@Override
 	public Type<?> evaluate() {
+		Object value = getExpressions().get(0).evaluate().getValue();
+		Object otherValue = getExpressions().get(1).evaluate().getValue();
+		if (value instanceof Boolean && otherValue instanceof Boolean)
+			return new Type<Boolean> ((boolean) value || (boolean) otherValue);
+		getRootProgram().typeErrorOccurred();
 		// TODO Auto-generated method stub
 		return null;
 	}

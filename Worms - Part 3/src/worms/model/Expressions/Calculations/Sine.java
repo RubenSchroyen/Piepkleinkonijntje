@@ -13,7 +13,11 @@ public class Sine extends Expression {
 	@Override
 	public Type<?> evaluate() {
 		// TODO Auto-generated method stub
-		return null;
+				Object value = getExpressions().get(0).evaluate().getValue();
+				if (value instanceof Number)
+					return new Type<Double> (Math.sin((double) value));
+				getRootProgram().typeErrorOccurred();
+				return null;
 	}
 
 }

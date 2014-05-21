@@ -1520,4 +1520,17 @@ public class Worm
 			return true;
 		return false;
 	}
+
+	/**
+	 * This method removes the program of this worm
+	 * 
+	 * @post
+	 * 		The program gets removed
+	 * 			| new.getProgram() == null
+	 */
+	public void removeProgram() 
+	{
+		this.getProgram().terminate();
+		this.setProgram(null);
+	}
 }
