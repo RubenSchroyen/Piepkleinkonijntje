@@ -149,8 +149,7 @@ public class World
 	public Worm currentWorm()
 	{
 		Worm worm = worms.get(this.getIndex());
-		if (worm.hasProgram())
-			worm.getProgram().runProgram();
+		
 		if (worm.getCurrentAP() == 0 && worms.size() > 1)
 		{
 			worm.setHP(worm.getHP() + 10);
@@ -172,6 +171,16 @@ public class World
 	public void nextWorm()
 	{
 		this.setIndex(this.getIndex() + 1);
+		if (this.currentWorm().hasProgram() == true) //-------------
+			this.currentWorm().getProgram().runProgram();
+		else
+		{
+			this.currentWorm().setCurrentAP(this.currentWorm().getMaxAP());
+			this.currentWorm().setHP(this.currentWorm().getHP() + 10);			
+			
+		}
+		
+		
 	}
 
 	/**
@@ -438,7 +447,7 @@ public class World
 			{
 				for ( Food food : fodder ) 
 				{
-					if (World.isOverlapping(worm.getPosX(), worm.getPosY(), worm.getRadius(), food.getPosX(), food.getPosY(), food.getRadius())) 
+					if (World.isOverlapping(worm.getPosX(), worm.getPosY(), worm.getRadius(), food.getPosX(), food.getPosY(), Food.getRadius())) 
 						return;
 				}
 			}
@@ -453,6 +462,8 @@ public class World
 			}
 			worms.add(worm);
 			worm.addToTeam(this.getCurrentTeam());
+			if (worm.hasProgram())
+				program.setWorm(worm);
 		}
 		else 
 			addWorm(program);
@@ -582,7 +593,7 @@ public class World
 		double center = this.getWorldWidth() / 2;
 		double currentX = food.getPosX();
 
-		while (Math.abs(center - currentX) > food.getRadius() && !isAdjacent(currentX, food.getPosY(), food.getRadius())) 
+		while (Math.abs(center - currentX) > Food.getRadius() && !isAdjacent(currentX, food.getPosY(), Food.getRadius())) 
 		{
 			if (currentX < center) 
 			{
@@ -598,7 +609,7 @@ public class World
 			food.setPosX(currentX);
 
 		}
-		if (Math.abs(center - currentX) > food.getRadius())
+		if (Math.abs(center - currentX) > Food.getRadius())
 			return currentX;
 		else
 			return 0;
@@ -624,7 +635,7 @@ public class World
 	{
 		double center = this.getWorldHeight() / 2;
 		double currentY = food.getPosY();
-		while (Math.abs(center - currentY) > food.getRadius() && !isAdjacent(food.getPosX(), currentY, food.getRadius())) 
+		while (Math.abs(center - currentY) > Food.getRadius() && !isAdjacent(food.getPosX(), currentY, Food.getRadius())) 
 		{	
 			if (currentY < center) 
 			{
@@ -637,7 +648,7 @@ public class World
 			}
 			food.setPosY(currentY);
 		}
-		if (Math.abs(center - currentY) > food.getRadius())
+		if (Math.abs(center - currentY) > Food.getRadius())
 			return currentY;
 		else
 			return 0;
@@ -734,14 +745,14 @@ public class World
 		food.setPosY(this.findAdjacentY(food, randomPositionY));
 		assert(foodExists(food) && food.getWorld() == this);
 		assert(!foodInWorld(food));
-		if (foodInBounds(food) && isAdjacent(food.getPosX(), food.getPosY(), food.getRadius()))
+		if (foodInBounds(food) && isAdjacent(food.getPosX(), food.getPosY(), Food.getRadius()))
 		{
 			if (fodder.size() > 1)
 			{
 
 				for ( Food otherFood : fodder ) 
 				{
-					if (World.isOverlapping(food.getPosX(), food.getPosY(), food.getRadius(), otherFood.getPosX(), otherFood.getPosY(), otherFood.getRadius())) 
+					if (World.isOverlapping(food.getPosX(), food.getPosY(), Food.getRadius(), otherFood.getPosX(), otherFood.getPosY(), Food.getRadius())) 
 						return;
 				}
 			}
@@ -750,7 +761,7 @@ public class World
 			{
 				for ( Worm otherWorm : worms ) 
 				{
-					if (World.isOverlapping(food.getPosX(), food.getPosY(), food.getRadius(), otherWorm.getPosX(), otherWorm.getPosY(), otherWorm.getRadius())) 
+					if (World.isOverlapping(food.getPosX(), food.getPosY(), Food.getRadius(), otherWorm.getPosX(), otherWorm.getPosY(), otherWorm.getRadius())) 
 						return;
 				}
 			}

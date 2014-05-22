@@ -221,6 +221,8 @@ public class Worm
 		this.setHP(this.getMaxHP());
 		this.setWorld(world);
 		this.setProgram(program);
+		
+		
 	}
 
 
@@ -1063,24 +1065,6 @@ public class Worm
 			throw new IllegalArgumentException("This worm can not shoot");
 	}
 
-	/**
-	 * This method starts the next turn and the worm regains all his AP and 10 HP
-	 * 
-	 * @post
-	 * 		The worm regains 10 HP
-	 * 			| new.getHP() == getHP() + 10
-	 * 
-	 * @post
-	 * 		The worm regains all his AP
-	 * 			| new.getCurrentAP() == getMaxAP()
-	 */
-	public void nextTurn()
-	{
-		if (this.getWorld().currentWorm() != this)
-			this.setHP(getHP() + 10);
-		this.setCurrentAP(getMaxAP());
-	}
-
 
 	/**
 	 * this method determines whether the worm can shoot or not
@@ -1147,7 +1131,7 @@ public class Worm
 			ArrayList<Food> oldFood = new ArrayList<Food>(getWorld().getFodder());
 			for ( Food food : oldFood ) 
 			{
-				if (World.isOverlapping(getPosX(), getPosY(), getRadius(), food.getPosX(), food.getPosY(), food.getRadius())) 
+				if (World.isOverlapping(getPosX(), getPosY(), getRadius(), food.getPosX(), food.getPosY(), Food.getRadius())) 
 					consume(food);
 			}
 		}

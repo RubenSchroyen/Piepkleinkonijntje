@@ -5,6 +5,7 @@ import java.util.Map;
 import worms.gui.game.IActionHandler;
 import worms.model.ModelException;
 import worms.model.programs.ParseOutcome;
+import worms.model.programs.ProgramFactory;
 import worms.model.programs.ProgramParser;
 
 public class Program {
@@ -17,29 +18,33 @@ public class Program {
 	private int currentColumn;
 	private int AmountOfStatements;
 	private final int maxAmountOfStatements = 1000;
+	private Worm worm;
 	
-	public IActionHandler getHandler() 
-	{
-		return handler;
-	}
-
-	public Program() {}
+	public Program(Map<String, Type> globals, Statement statement){
+		this.setGlobals(globals);
+		this.setStatement(statement);
 
 	
+		}
+	
 
-	public ParseOutcome<?> parseProgram(String programText, IActionHandler handler) 
-	{
-		this.handler = handler;
-		parser = new ProgramParser<Expression,Statement,Type<?>>(new ProgramFactoryImpl());
+
+	/*public ParseOutcome<?> parseProgram(String programText,IActionHandler handler) {
+		
+		ProgramParser<Expression,Statement,Type> parser= new ProgramParser(ProgramFactory<Expression,Statement,Type> factory);
 		parser.parse(programText);
-		setVariables(parser.getGlobals());
-		setStatement(parser.getStatement());
-		if (parser.getErrors().isEmpty())
-			return ParseOutcome.success(this);
-		else
+		if (!parser.getErrors().isEmpty())
 			return ParseOutcome.failure(parser.getErrors());
+		else
+			return ParseOutcome.success(new Program());
+	
+		
+		/* 
+		Program program = new Program();
+		return program.parseProgram(programText, handler);
+		
 	}
-
+*/
 	public boolean isWellFormed() 
 	{
 		return getStatement().isWellFormed(this);
@@ -81,6 +86,12 @@ public class Program {
 	{
 		return currentColumn;
 	}
+	
+	public IActionHandler getHandler() 
+	{
+		return handler;
+	}
+
 	public void setCurrentLine(int line) 
 	{
 		currentLine = line;
@@ -140,7 +151,7 @@ public class Program {
 		if (continueExecution)
 			hasReachedEnd = true;
 		System.out.println("runProgram() has reached end. Next turn initiating.");
-		getWorm().getWorld().nextWorm();
+		this.getWorm().getWorld().nextWorm();
 	}
 
 	public void stopProgram() 
@@ -149,7 +160,7 @@ public class Program {
 		hasReachedEnd = false;
 	}
 
-	private Worm worm;
+	
 
 	public Worm getWorm() 
 	{
@@ -228,4 +239,25 @@ public class Program {
 		terminated = true;
 	}
 
+	
+	
+	
+	
+	private void setGlobals(Map<String, Type> globals) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

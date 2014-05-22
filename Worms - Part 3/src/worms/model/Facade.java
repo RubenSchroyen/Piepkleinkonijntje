@@ -4,8 +4,12 @@ package worms.model;
 import java.util.Collection;
 import java.util.Random;
 
+
+
 import worms.gui.game.IActionHandler;
 import worms.model.programs.ParseOutcome;
+import worms.model.programs.ProgramParser;
+import worms.model.Expressions.*;
 
 
 public class Facade implements IFacade 
@@ -178,7 +182,7 @@ public class Facade implements IFacade
 	@Override
 	public double getRadius(Food food) 
 	{
-		return food.getRadius();
+		return Food.getRadius();
 	}
 
 
@@ -236,10 +240,10 @@ public class Facade implements IFacade
 	@Override
 	public void startNextTurn(World world) 
 	{
+	
+		
 		world.nextWorm();
-		world.currentWorm().setCurrentAP(world.currentWorm().getMaxAP());
-		world.currentWorm().setHP(world.currentWorm().getHP() + 10);			
-	}
+		}
 
 
 	@Override
@@ -440,15 +444,32 @@ public class Facade implements IFacade
 	}
 
 
-	@Override
+	/*@Override
 	public ParseOutcome<?> parseProgram(String programText,
 			IActionHandler handler) {
 		// TODO Auto-generated method stub
 		Program program = new Program();
 		return program.parseProgram(programText, handler);
 	}
+*/
 
+	@Override
+	public ParseOutcome<?> parseProgram(String program,
+			IActionHandler handler) {
+		
+		ProgramFactoryImpl factory = new ProgramFactoryImpl(handler);
+		ProgramParser<Expression, Statement, Type> parser = new ProgramParser<Expression, Statement,Type>(factory);
+		
+		parser.parse(program);		
+		if(!parser.getErrors().isEmpty())
+		{
+			return ParseOutcome.failure(parser.getErrors());
+		}
+		else			
+			return ParseOutcome.success(new Program(parser.getGlobals(), parser.getStatement()));
+	}
 
+	
 
 	@Override
 	public boolean hasProgram(Worm worm) 
