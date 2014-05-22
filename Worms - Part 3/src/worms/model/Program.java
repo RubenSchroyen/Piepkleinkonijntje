@@ -23,6 +23,7 @@ public class Program {
 	public Program(Map<String, Type> globals, Statement statement){
 		this.setGlobals(globals);
 		this.setStatement(statement);
+		System.out.println(statement);
 
 	
 		}
@@ -225,6 +226,8 @@ public class Program {
 	}
 
 	private boolean terminated;
+	
+	private Map<String, Type> globals;
 
 	public boolean isTerminated() 
 	{
@@ -243,8 +246,9 @@ public class Program {
 	
 	
 	
-	private void setGlobals(Map<String, Type> globals) {
-		// TODO Auto-generated method stub
+	private void setGlobals(Map<String, Type> globals) 
+	{
+		this.globals = globals;
 		
 	}
 
