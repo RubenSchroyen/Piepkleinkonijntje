@@ -123,18 +123,17 @@ public class DummyProgramFactoryImpl implements
 
 	// public E IsTerrain(int line, int column, E e);
 
-	@Override
+	/*@Override
 	public DummyExpression createVariableAccess(int line, int column,
 			String name) {
 		return null;
 	}
-
+	 */
 	@Override
 	public DummyExpression createVariableAccess(int line, int column,
 			String name, DummyType type) {
 		return (null);
 	}
-
 	@Override
 	public DummyExpression createLessThan(int line, int column,
 			DummyExpression e1, DummyExpression e2) {

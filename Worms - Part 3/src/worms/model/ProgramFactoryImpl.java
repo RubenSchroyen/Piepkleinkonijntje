@@ -130,12 +130,12 @@ public class ProgramFactoryImpl implements  ProgramFactory<Expression, Statement
 		return new isFood(line,column, e);
 	}
 
-	
+	/*
 	public Expression createVariableAccess(int line, int column, String name) 
 	{
 		return new Variable(line,column,name);
 	}
-
+*/
 	
 	public Expression createLessThan(int line, int column, Expression e1, Expression e2) 
 	{
@@ -310,12 +310,19 @@ public class ProgramFactoryImpl implements  ProgramFactory<Expression, Statement
 		return new Type<Object>();
 	}
 
-	
+	@Override
+	public Expression createVariableAccess(int line, int column, String name,
+			Type type) {
+		// TODO Auto-generated method stub
+	return new Variable(line,column,name);
+	}
+
+	/*
 	public Expression createVariableAccess(int line, int column, String name,
 			Type<?> type) 
 	{
 		
-		return null;
+		return new Variable(line,column,name);
 	}
-
+*/
 }

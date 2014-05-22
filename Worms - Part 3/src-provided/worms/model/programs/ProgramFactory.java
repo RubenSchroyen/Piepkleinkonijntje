@@ -172,7 +172,7 @@ public interface ProgramFactory<E, S, T> {
 	 * Create an expression that evaluates to the value of the variable with the
 	 * given name
 	 */
-	public E createVariableAccess(int line, int column, String name);
+	//public E createVariableAccess(int line, int column, String name);
 	
 	/**
 	 * OPTIONAL METHOD
