@@ -243,9 +243,6 @@ public class Program {
 	}
 
 	
-	
-	
-	
 	private void setGlobals(Map<String, Type> globals) 
 	{
 		this.globals = globals;

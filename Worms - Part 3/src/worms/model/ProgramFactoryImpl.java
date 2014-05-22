@@ -12,7 +12,8 @@ import worms.model.programs.ProgramFactory;
 
 public class ProgramFactoryImpl implements  ProgramFactory<Expression, Statement, Type>
 {
-	public ProgramFactoryImpl(IActionHandler handler){
+	public ProgramFactoryImpl(IActionHandler handler)
+	{
 		
 	}
 	
