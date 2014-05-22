@@ -249,7 +249,7 @@ public class Facade implements IFacade
 	@Override
 	public boolean isImpassable(World world, double randomizedX, double randomizedY, double testRadius) 
 	{
-		return world.isPassable(randomizedX, randomizedY, testRadius);
+		return !world.isPassable(randomizedX, randomizedY, testRadius);
 	}
 
 
