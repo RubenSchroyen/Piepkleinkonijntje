@@ -1383,7 +1383,7 @@ public class World
 		if (!isPassable(x,y,radius))
 			return false;
 
-		for (double testAngle = 0; testAngle < 2*Math.PI; testAngle += 2*Math.PI/40) 
+		for (double testAngle = 0.0; testAngle < 2.0*Math.PI; testAngle += 2.0*Math.PI/40) 
 		{
 			double deltaX = (0.1*radius + this.getResolutionX()) * Math.cos(testAngle);
 			double deltaY = (0.1*radius + this.getResolutionY()) * Math.sin(testAngle);
