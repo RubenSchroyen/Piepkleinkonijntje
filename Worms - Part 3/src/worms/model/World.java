@@ -512,26 +512,26 @@ public class World
 	 */
 	public double findAdjacentX(Worm worm, double x)
 	{
-		double center = this.getWorldWidth() / 2;
+		double center = this.getWorldWidth() / 2.0;
 		double currentX = worm.getPosX();
 
 		while (Math.abs(center - currentX) > worm.getRadius() && !isAdjacent(currentX, worm.getPosY(), worm.getRadius())) 
 		{
 			if (currentX < center) 
 			{
-				currentX += 1 * (this.getWorldWidth() / passableMap[0].length);
+				currentX += 1.0 * (this.getWorldWidth() / passableMap[0].length);
 			}
 
 			if (currentX > center) 
 			{
-				currentX -= 1 * (this.getWorldWidth() / passableMap[0].length);
+				currentX -= 1.0 * (this.getWorldWidth() / passableMap[0].length);
 			}
 			worm.setPosX(currentX);
 		}
 		if (Math.abs(center - currentX) > worm.getRadius())
 			return currentX;
 		else
-			return 0;
+			return 0.0;
 	}
 
 
@@ -552,25 +552,25 @@ public class World
 	 */
 	public double findAdjacentY(Worm worm, double y)
 	{
-		double center = this.getWorldHeight() / 2;
+		double center = this.getWorldHeight() / 2.0;
 		double currentY = worm.getPosY();
 		while (Math.abs(center - currentY) > worm.getRadius() && !isAdjacent(worm.getPosX(), currentY, worm.getRadius())) 
 		{	
 			if (currentY < center) 
 			{
-				currentY += 1 * (this.getWorldHeight() / passableMap.length);
+				currentY += 1.0 * (this.getWorldHeight() / passableMap.length);
 			}
 
 			if (currentY > center) 
 			{
-				currentY -= 1 * (this.getWorldHeight() / passableMap.length);
+				currentY -= 1.0 * (this.getWorldHeight() / passableMap.length);
 			}
 			worm.setPosY(currentY);
 		}
 		if (Math.abs(center - currentY) > worm.getRadius())
 			return currentY;
 		else
-			return 0;
+			return 0.0;
 	}
 
 	/**
@@ -590,20 +590,20 @@ public class World
 	 */
 	public double findAdjacentX(Food food, double x)
 	{
-		double center = this.getWorldWidth() / 2;
+		double center = this.getWorldWidth() / 2.0;
 		double currentX = food.getPosX();
 
 		while (Math.abs(center - currentX) > Food.getRadius() && !isAdjacent(currentX, food.getPosY(), Food.getRadius())) 
 		{
 			if (currentX < center) 
 			{
-				currentX += 1 * (this.getWorldWidth() / passableMap[0].length);
+				currentX += 1.0 * (this.getWorldWidth() / passableMap[0].length);
 
 			}
 
 			if (currentX > center) 
 			{
-				currentX -= 1 * (this.getWorldWidth() / passableMap[0].length);
+				currentX -= 1.0 * (this.getWorldWidth() / passableMap[0].length);
 
 			}
 			food.setPosX(currentX);
@@ -612,7 +612,7 @@ public class World
 		if (Math.abs(center - currentX) > Food.getRadius())
 			return currentX;
 		else
-			return 0;
+			return 0.0;
 	}
 
 
@@ -633,25 +633,25 @@ public class World
 	 */
 	public double findAdjacentY(Food food, double y)
 	{
-		double center = this.getWorldHeight() / 2;
+		double center = this.getWorldHeight() / 2.0;
 		double currentY = food.getPosY();
 		while (Math.abs(center - currentY) > Food.getRadius() && !isAdjacent(food.getPosX(), currentY, Food.getRadius())) 
 		{	
 			if (currentY < center) 
 			{
-				currentY += 1 * (this.getWorldHeight() / passableMap.length);
+				currentY += 1.0 * (this.getWorldHeight() / passableMap.length);
 			}
 
 			if (currentY > center) 
 			{
-				currentY -= 1 * (this.getWorldHeight() / passableMap.length);
+				currentY -= 1.0 * (this.getWorldHeight() / passableMap.length);
 			}
 			food.setPosY(currentY);
 		}
 		if (Math.abs(center - currentY) > Food.getRadius())
 			return currentY;
 		else
-			return 0;
+			return 0.0;
 	}
 
 	/**
@@ -1009,7 +1009,7 @@ public class World
 	 */
 	public boolean wormInBounds(Worm worm)
 	{
-		if (worm.getPosX() < 0 || worm.getPosX() > this.getWorldWidth() || worm.getPosY() < 0 || worm.getPosY() > this.getWorldHeight())
+		if (worm.getPosX() < 0.0 || worm.getPosX() > this.getWorldWidth() || worm.getPosY() < 0.0 || worm.getPosY() > this.getWorldHeight())
 			return false;
 		else 
 			return true;
@@ -1028,7 +1028,7 @@ public class World
 	 */
 	public boolean foodInBounds(Food food)
 	{
-		if (food.getPosX() < 0 || food.getPosX() > this.getWorldWidth() || food.getPosY() < 0 || food.getPosY() > this.getWorldHeight())
+		if (food.getPosX() < 0.0 || food.getPosX() > this.getWorldWidth() || food.getPosY() < 0.0 || food.getPosY() > this.getWorldHeight())
 			return false;
 		else 
 			return true;
@@ -1047,7 +1047,7 @@ public class World
 	 */
 	public boolean projectileInBounds(Projectile projectile)
 	{
-		if (projectile.getPosX() < 0 || projectile.getPosX() > this.getWorldWidth() || projectile.getPosY() < 0 || projectile.getPosY() > this.getWorldHeight())
+		if (projectile.getPosX() < 0.0 || projectile.getPosX() > this.getWorldWidth() || projectile.getPosY() < 0.0 || projectile.getPosY() > this.getWorldHeight())
 			return false;
 		else 
 			return true;
@@ -1203,7 +1203,7 @@ public class World
 	@Basic @Raw
 	public double getResolutionX() 
 	{
-		return (this.getWorldWidth() / ((double) this.getPixelsX()));
+		return (this.getWorldWidth() / this.getPixelsX());
 	}
 
 
@@ -1215,7 +1215,7 @@ public class World
 	@Basic @Raw
 	public double getResolutionY() 
 	{
-		return (this.getWorldHeight() / ((double) getPixelsY()));
+		return (this.getWorldHeight() / getPixelsY());
 	}
 
 
@@ -1238,7 +1238,7 @@ public class World
 	{
 		if (!isWithinBoundaries(x,y))
 			throw new IllegalArgumentException("Not within the boundaries of this world");
-		int pixelX = (int) Math.round(x * ((double) this.getPixelsX()-1 ) / this.getWorldWidth());
+		int pixelX = (int) (Math.round(x * this.getPixelsX()-1 ) / this.getWorldWidth());
 		int pixelY = (this.getPixelsY()-1) - (int) Math.round(y * ((double) this.getPixelsY()  -1 ) / this.getWorldHeight());
 
 		int[] pixelPosition = new int[2];
@@ -1265,7 +1265,7 @@ public class World
 	 */
 	public boolean isWithinBoundaries(double x, double y) 
 	{
-		if (x < (double) 0 || x > this.getWorldWidth() || y < (double) 0 || y > this.getWorldHeight())
+		if (x < 0.0 || x > this.getWorldWidth() || y < 0.0 || y > this.getWorldHeight())
 			return false;
 		return true;
 	}
@@ -1335,14 +1335,14 @@ public class World
 		if (!isPassablePosition(x, y))
 			return false;
 
-		int amountOfPixelsX = (int) Math.ceil(0.1*radius / this.getResolutionX());
-		int amountOfPixelsY = (int) Math.ceil(0.1*radius / this.getResolutionY());
+		double amountOfPixelsX = Math.ceil(0.1*radius / this.getResolutionX());
+		double amountOfPixelsY = Math.ceil(0.1*radius / this.getResolutionY());
 
-		double testX = 0;
-		double testY = 0;
-		for (int pixelX = 0; pixelX < amountOfPixelsX; pixelX++) 
+		double testX = 0.0;
+		double testY = 0.0;
+		for (double pixelX = 0.0; pixelX < amountOfPixelsX; pixelX++) 
 		{
-			for (int pixelY = 0; pixelY < amountOfPixelsY; pixelY++) 
+			for (double pixelY = 0.0; pixelY < amountOfPixelsY; pixelY++) 
 			{
 				testX = pixelX * this.getResolutionX();
 				testY = pixelY * this.getResolutionY();
@@ -1383,10 +1383,11 @@ public class World
 		if (!isPassable(x,y,radius))
 			return false;
 
-		for (double testAngle = 0.0; testAngle < 2.0*Math.PI; testAngle += 2.0*Math.PI/40) 
+		for (double testAngle = 0.0; testAngle < 2.0*Math.PI; testAngle += 2.0*Math.PI/40.0) 
 		{
 			double deltaX = (0.1*radius + this.getResolutionX()) * Math.cos(testAngle);
 			double deltaY = (0.1*radius + this.getResolutionY()) * Math.sin(testAngle);
+			
 
 			if (isWithinBoundaries(x + deltaX, y + deltaY) && !isPassablePosition(x + deltaX, y + deltaY)) 
 				return true;

@@ -7,8 +7,9 @@ package worms.model;
  *																																  *
  *		HIGH PRIORITY																											  *
  *		-------------																											  *																								      *
- *			DOCUMENTATION																									  	  *
+ *			DOCUMENTATION??																									  	  *
  *			FIGURE OUT WHY WORMS DON'T FOLLOW A PROGRAM																			  *
+ *			SOLVE BLOCKS PASSABLE AND ADJACENT																		 			  *
  *																																  *
  *		LOW PRIORITY																											  *
  *		------------																										      *
